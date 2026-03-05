@@ -1,13 +1,14 @@
 "use client"
 
 type ObjectId = string
+type Variable = string // ID that gets substituted with a number while rendering
 
 type Anchor = "center" | "N" | "NE" | "E" | "SE" | "S" | "SW" | "W" | "NW"
 type Place = {
   relativeTo: ObjectId,
   anchor: Anchor,
-  dx: number,
-  dy: number,
+  dx?: Variable,
+  dy?: Variable,
 }
 type Stroke = "solid" | "thin" | "symmetry" | "dashed"
 
@@ -18,7 +19,7 @@ type Line = {
 }
 type Text = {
   value: string,
-  size: number,
+  size: Variable,
   italic: boolean,
   bold: boolean,
   align: "left" | "center" | "right",
@@ -28,10 +29,16 @@ type Circle = {
   anchor: Anchor,
   place: Place,
 }
+type Rect = {
+  anchor: Anchor,
+  place: Place,
+  width: Variable,
+  height: Variable,
+}
 type Arc = {
   start: Anchor,
   end: Anchor,
-  radius: number,
+  radius: Variable,
   direction: "CW" | "CCW",
 }
 
